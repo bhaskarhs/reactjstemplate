@@ -10,6 +10,8 @@ export default {
       secondary_button_color: "#e74242",
       proceed_btn_color: "#53a5f1",
       white: "#fff",
+      gray: "gray",
+      loginbuttooncolor: "#374159",
     },
     fontFamily: {
       sans: ["Helvetica", "Arial", "sans-serif"],

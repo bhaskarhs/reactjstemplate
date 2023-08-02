@@ -7,7 +7,7 @@ const Header: FC = () => {
     console.log(location);
 
     return (
-        <div className='w-full bg-white px-12 py-6'>
+        <div className='w-full bg-white px-12 pt-8 pb-4'>
             <nav className='flex flex-row justify-between align-middle'>
                 <section className='flex flex-row align-middle'>
                     <NavLink to={"/"} className={"text-sm font-light"}>logo </NavLink>
@@ -37,7 +37,7 @@ const DropdownMenu = () => {
             <div>
                 <button
                     type="button"
-                    className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                    className="inline-flex w-full justify-center align-middle gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                     id="menu-button"
                     aria-expanded={menuOpen}
                     aria-haspopup="true"

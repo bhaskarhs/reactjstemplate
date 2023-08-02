@@ -9,3 +9,8 @@ html {
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol,
     "Noto Color Emoji";
 }
+.form-control,
+input {
+  border: 1px solid #e2e3e3;
+  color: #495057;
+}
