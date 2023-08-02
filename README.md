@@ -1,9 +1,17 @@
 # reactjstemplate
-reactjstemplate
+<h1>reactjstemplate</h1>
 
-steps to run the project in local 
-clone the project
-run npm i node >16 npm no yarn
-npm run dev for development mode
-npm run build for production
-npm start for production 
+<h4> steps to run the project in local </h4>
+<ul>
+  <li>
+    Clone the project
+  </li>
+  <li>
+    Run npm install <b>node >16 npm no yarn </b></li>
+<li>npm run dev for development mode</li>
+<li>npm run build for production</li>
+<li>npm start for production </li>
+  
+</ul>
+
+
