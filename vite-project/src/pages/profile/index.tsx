@@ -1,9 +1,15 @@
 // About.tsx
 
 import { FC } from 'react';
+import { ProfileHeader } from '../../components/Profile/ProfileInfo';
+import Profile from '../../components/Profile';
 
-const Profile: FC = () => {
-    return <h1>profile</h1>;
+const ProfilePage: FC = () => {
+    return <>
+        <ProfileHeader />
+        <Profile />
+
+    </>
 };
 
-export default Profile;
+export default ProfilePage;

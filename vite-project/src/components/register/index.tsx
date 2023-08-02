@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { inputClassName, labelClassName } from '../Profile/ProfileInfo'
 
 const Register: FC = () => {
     return (
@@ -9,27 +10,28 @@ const Register: FC = () => {
                     <input type="hidden" name="_token" value="QpW6SEdeINLdlSOpaEvbK8XZB3jFg9xMFUvWVdLh" />
 
                     <div>
-                        <label className="block font-medium text-sm text-gray-700" htmlFor="name">Name
+
+                        <label className={labelClassName} htmlFor="name">Name
                         </label>
-                        <input className="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="name" type="text" name="name" required autoFocus autoComplete="name" />
+                        <input className={inputClassName} id="name" type="text" name="name" required autoFocus autoComplete="name" />
                     </div>
 
                     <div className="mt-4">
-                        <label className="block font-medium text-sm text-gray-700" htmlFor="email">Email
+                        <label className={labelClassName} htmlFor="email">Email
                         </label>
-                        <input className="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="email" type="email" name="email" required autoComplete="username" />
+                        <input className={inputClassName} id="email" type="email" name="email" required autoComplete="username" />
                     </div>
 
                     <div className="mt-4">
-                        <label className="block font-medium text-sm text-gray-700" htmlFor="password">Password
+                        <label className={labelClassName} htmlFor="password">Password
                         </label>
-                        <input className="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="password" type="password" name="password" required />
+                        <input className={inputClassName} id="password" type="password" name="password" required />
                     </div>
 
                     <div className="mt-4">
-                        <label className="block font-medium text-sm text-gray-700" htmlFor="password_confirmation">Confirm Password
+                        <label className={labelClassName} htmlFor="password_confirmation">Confirm Password
                         </label>
-                        <input className="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="password_confirmation" type="password" name="password_confirmation" required autoComplete='' />
+                        <input className={inputClassName} id="password_confirmation" type="password" name="password_confirmation" required autoComplete='' />
                     </div>
                     <div className="flex items-center justify-end mt-4">
                         <a className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="http://buyersscoop.net/login">Already registered?
