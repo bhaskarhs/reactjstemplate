@@ -14,7 +14,7 @@ const FileUpload: FC = () => {
                 <h1 className='font-semibold text-lg'>Upload new file:</h1>
 
             </div>
-            <form className='my-6 mx-12 p-6 bg-white rounded-md' onClick={handleFileUpload}>
+            <form className='my-6 sm:mx-0  md:mx-12 p-6 bg-white rounded-md' onClick={handleFileUpload}>
                 <div className='flex flex-col mb-4'>
                     <label className='text-sm '>File alias (optional)</label>
                     <input type='text' className='border-solid py-1 px-2 my-1 rounded-sm' />

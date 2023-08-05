@@ -14,7 +14,7 @@ export default {
       loginbuttooncolor: "#374159",
     },
     fontFamily: {
-      sans: ["Helvetica", "Arial", "sans-serif"],
+      sans: ["Figtree", "Helvetica", "Arial", "sans-serif"],
     },
   },
   plugins: [],

@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 const Login: FC = () => {
     return (
-        <div className='w-[35%]'>
+        <div className='lg:w-[35%] md:w-[50%] w-full'>
             <h3>Logo</h3>
             <form className='bg-white rounded-sm px-6 py-4 mt-2 shadow-md overflow-hidden sm:rounded-lg '>
                 <div className='flex flex-col my-4'>

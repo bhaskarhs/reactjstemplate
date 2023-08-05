@@ -3,7 +3,7 @@ import { inputClassName, labelClassName } from '../Profile/ProfileInfo'
 
 const Register: FC = () => {
     return (
-        <div className='w-[35%]'>
+        <div className='lg:w-[35%] md:w-[50%] w-full'>
             <h3>Logo</h3>
             <div className="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                 <form method="POST" action="http://buyersscoop.net/register">
