@@ -1,10 +1,14 @@
-import { FC } from 'react';
+
 import Login from '../../components/login';
 
-const LoginPage: FC = () => {
+export interface LoginProps {
+    handleLogin: (value: boolean) => void
+}
+
+const LoginPage = ({ handleLogin }: LoginProps) => {
     return (
         <div className='grid h-screen place-items-center'>
-            <Login />
+            <Login handleLogin={handleLogin} />
         </div>
 
     )
