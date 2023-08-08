@@ -1,8 +1,31 @@
 // Home.tsx
 
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import "../../App.scss"
+import axios from 'axios';
+import { apiUrlEndPoint } from '../../api/url';
+
 const Home: FC = () => {
+    const [array, setArray] = useState([])
+
+    useEffect(() => {
+        const response = axios.post(apiUrlEndPoint.fetchFileDetailsApi(), {
+            "config": {
+                "is_": "get_list"
+            }
+        })
+        response.then((res) => {
+            console.log(res.data.files_list);
+            setArray(res.data.files_list)
+
+        })
+        response.catch(err => {
+            console.log(err);
+
+        })
+    }, [])
+    console.log(JSON.stringify(array));
+
     return (
         <React.Fragment>
             <header className="bg-white shadow">
