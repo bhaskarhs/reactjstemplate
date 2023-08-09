@@ -5,8 +5,20 @@ import "../../App.scss"
 import axios from 'axios';
 import { apiUrlEndPoint } from '../../api/url';
 
+export interface File {
+    id: number;
+    name: string | null;
+    created_at: string;
+    updated_at: string;
+    active: boolean;
+}
+
+export interface FileListComponentProps {
+    filesList: File[];
+}
+
 const Home: FC = () => {
-    const [array, setArray] = useState([])
+    const [filesList, setFilesList] = useState<File[]>([])
 
     useEffect(() => {
         const response = axios.post(apiUrlEndPoint.fetchFileDetailsApi(), {
@@ -16,7 +28,7 @@ const Home: FC = () => {
         })
         response.then((res) => {
             console.log(res.data.files_list);
-            setArray(res.data.files_list)
+            setFilesList(res.data.files_list)
 
         })
         response.catch(err => {
@@ -24,7 +36,11 @@ const Home: FC = () => {
 
         })
     }, [])
-    console.log(JSON.stringify(array));
+    console.log(JSON.stringify(filesList));
+    const formatDate = (dateString: string) => {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+    };
 
     return (
         <React.Fragment>
@@ -53,7 +69,25 @@ const Home: FC = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <td scope='row'>1</td>
+                                {filesList.map((file, index) => (
+                                    <tr key={file.id}>
+                                        <td scope='row'>{index}</td>
+                                        <td className='filename'>{file.name ? file.name : " - "}</td>
+                                        <td>16/0</td>
+                                        <td className='file-status'>
+                                            <p className={file.active ? 'processing-status' : 'wiating-status'}>
+                                                {file.active ? 'Active' : 'Inactive'}
+                                            </p></td>
+                                        <td>{formatDate(file.created_at)}</td>
+                                        <td>{formatDate(file.updated_at)}</td>
+                                        <td>
+                                            <button>View</button>
+                                            <button>Export</button>
+                                            <button>Kill</button>
+                                        </td>
+                                    </tr>
+                                ))}
+                                {/* <td scope='row'>1</td>
                                 <td className='filename'>somedata some more data</td>
                                 <td>16/0</td>
                                 <td className='file-status'>
@@ -77,7 +111,7 @@ const Home: FC = () => {
                                     <button>View</button>
                                     <button>Export</button>
                                     <button>Kill</button>
-                                </td>
+                                </td> */}
                                 <tr />
 
                             </tbody>
