@@ -14,8 +14,9 @@ const Login = ({ handleLogin }: LoginProps) => {
     const loginHandler = (e: React.FormEvent) => {
         const { setContext } = context
         e.preventDefault()
-        if (email === "bhaskar@gmail.com" && password === "12345") {
+        if (email === "surya@writermailbox.com" && password === "demo1234") {
             setContext({ isLoggedIn: true })
+            localStorage.setItem("login", "true")
             navigate("/", { replace: true })
         } else {
             setContext({ isLoggedIn: false })

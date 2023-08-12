@@ -11,7 +11,7 @@ const ProtectedRoutes = ({ children }: ProtectedRoutesProps) => {
     const location = useLocation();
     console.log(context, children);
 
-    const isLoggedIn = context.state.isLoggedIn;
+    const isLoggedIn = context.state.isLoggedIn || localStorage.getItem("login");
     if (!isLoggedIn) return <Navigate to="/login" state={{ from: location }} replace />
 
     return children

@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useState, useEffect } from 'react'
 import { Route, Routes, useNavigate } from 'react-router-dom'
 import Home from './pages/home'
 import Profile from './pages/profile'
@@ -33,7 +33,14 @@ const AppRoutes: FC = () => {
         }))
 
     }
+    const getLocaStorage = localStorage.getItem("login")
+    useEffect(() => {
 
+        if (getLocaStorage) {
+            setContext({ isLoggedIn: getLocaStorage })
+
+        }
+    }, [])
     return (
         <MyContext.Provider value={{
             state: appState,

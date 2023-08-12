@@ -56,12 +56,13 @@ const FileUpload: FC = () => {
                 onSubmit={handleFileUpload}
             >
                 <div className='flex flex-col mb-4'>
-                    <label className='text-sm '>File alias (optional)</label>
+                    <label className='text-sm '>File alias </label>
                     <input
                         type='text'
                         className='border-solid py-1 px-2 my-1 rounded-sm'
                         value={alias}
                         onChange={(e) => setAlias(e.target.value)}
+                        required
                     />
                     <small className='text-[70%] text-[#74788d]'>
                         This will be shown instead of the file name.

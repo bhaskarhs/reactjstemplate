@@ -11,6 +11,9 @@ export interface File {
     created_at: string;
     updated_at: string;
     active: boolean;
+    status: string;
+    leads: string | number;
+    files: string
 }
 
 export interface FileListComponentProps {
@@ -19,8 +22,13 @@ export interface FileListComponentProps {
 
 const Home: FC = () => {
     const [filesList, setFilesList] = useState<File[]>([])
-
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [runningFileId, setRunningFileId] = useState<string | number>('')
     useEffect(() => {
+        fetchFileList()
+    }, [])
+    const fetchFileList = () => {
+        setIsLoading(true)
         const response = axios.post(apiUrlEndPoint.fetchFileDetailsApi(), {
             "config": {
                 "is_": "get_list"
@@ -29,13 +37,33 @@ const Home: FC = () => {
         response.then((res) => {
             console.log(res.data.files_list);
             setFilesList(res.data.files_list)
+            setIsLoading(false)
 
         })
         response.catch(err => {
             console.log(err);
 
         })
-    }, [])
+    }
+    const fileRunHandler = (file: File) => {
+        const payload = {
+            "proccess_is": file.name,
+            "file_id": file.id,
+            "file_path": `http://165.22.29.27:8000/media/${file.files}`
+        }
+        setRunningFileId(file.id)
+        axios.post(apiUrlEndPoint.runFile(), payload)
+            .then((res) => {
+                console.log(res);
+                setRunningFileId('')
+                fetchFileList()
+            })
+            .catch(error => {
+                console.log(error);
+                setRunningFileId('')
+            })
+    }
+
     console.log(JSON.stringify(filesList));
     const formatDate = (dateString: string) => {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -52,42 +80,46 @@ const Home: FC = () => {
                 </div>
             </header>
             <main>
+
                 <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    {!isLoading ?
+                        <div className="p-4 sm:p-8 bg-white shadow sm:rounded-sm">
 
-                    <div className="p-4 sm:p-8 bg-white shadow sm:rounded-sm">
-
-                        <table className="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">File Name</th>
-                                    <th scope="col">Leads / Matches</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Date Uploaded</th>
-                                    <th scope="col">Processed Date</th>
-                                    <th scope=''>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {filesList.map((file, index) => (
-                                    <tr key={file.id}>
-                                        <td scope='row'>{index}</td>
-                                        <td className='filename'>{file.name ? file.name : " - "}</td>
-                                        <td>16/0</td>
-                                        <td className='file-status'>
-                                            <p className={file.active ? 'processing-status' : 'wiating-status'}>
-                                                {file.active ? 'Active' : 'Inactive'}
-                                            </p></td>
-                                        <td>{formatDate(file.created_at)}</td>
-                                        <td>{formatDate(file.updated_at)}</td>
-                                        <td>
-                                            <button>View</button>
-                                            <button>Export</button>
-                                            <button>Kill</button>
-                                        </td>
+                            <table className="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">File Name</th>
+                                        <th scope="col">Leads </th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Date Uploaded</th>
+                                        <th scope="col">Processed Date</th>
+                                        <th scope='col' style={{ textAlign: "center" }}>Actions</th>
                                     </tr>
-                                ))}
-                                {/* <td scope='row'>1</td>
+                                </thead>
+                                <tbody>
+                                    {filesList.map((file, index) => (
+                                        <tr key={file.id}>
+                                            <td scope='row'>{index}</td>
+                                            <td className='filename'>{file.name ? file.name : " - "}</td>
+                                            <td>{file.leads}</td>
+                                            <td className='file-status'>
+                                                <p className={file.status !== "waiting" ? 'processing-status' : 'wiating-status'}>
+                                                    {file.status}
+                                                </p></td>
+                                            <td>{formatDate(file.created_at)}</td>
+                                            <td>{formatDate(file.updated_at)}</td>
+                                            <td>
+                                                {runningFileId === file.id ?
+                                                    <button>Loading...</button> :
+                                                    <button onClick={() => fileRunHandler(file)}>Run</button>}
+                                                <button>View</button>
+                                                <button>Export</button>
+                                                <button>Kill</button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                    {/* <td scope='row'>1</td>
                                 <td className='filename'>somedata some more data</td>
                                 <td>16/0</td>
                                 <td className='file-status'>
@@ -112,12 +144,17 @@ const Home: FC = () => {
                                     <button>Export</button>
                                     <button>Kill</button>
                                 </td> */}
-                                <tr />
+                                    <tr />
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
 
-                    </div>
+                        </div> :
+
+                        <div>
+                            Loding...
+                        </div>
+                    }
                     <br />
                 </div>
             </main>

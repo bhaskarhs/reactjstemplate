@@ -13,11 +13,14 @@ table {
     }
   }
   tbody {
-    .filename {
-      width: 25%;
+    td:not(:last-child) {
+      width: auto;
     }
     td {
       padding: 6px 2px;
+    }
+    td:last-child {
+      width: 27.5%;
     }
     button {
       background-color: #485ec4;

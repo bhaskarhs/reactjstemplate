@@ -12,6 +12,7 @@ export default {
       white: "#fff",
       gray: "gray",
       loginbuttooncolor: "#374159",
+      bgslate200: "#e2e8f0",
     },
     fontFamily: {
       sans: ["Figtree", "Helvetica", "Arial", "sans-serif"],

@@ -6,4 +6,7 @@ export const apiUrlEndPoint = {
   fetchFileDetailsApi: () => {
     return `${baseUrl}/api/app/servicesapps/servicesapps_workspace/validator-model/files/management`;
   },
+  runFile: () => {
+    return `${baseUrl}/api/app/servicesapps/servicesapps_workspace/validator-model/runner-validate-model`;
+  },
 };
